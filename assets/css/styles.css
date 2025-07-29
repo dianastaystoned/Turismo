@@ -123,6 +123,11 @@ body {
   color: var(--text-color);
 }
 
+html, body {
+  overflow-x: hidden; /* ok */
+  overflow-y: auto !important; /* esto forza el scroll vertical */
+}
+
 h1, h2, h3 {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
@@ -172,7 +177,12 @@ input {
   color: var(--title-color);
   text-align: center;
   text-transform: capitalize;
-  margin-bottom: var(--mb-2);
+  margin-bottom: var(--mb-2); 
+}
+
+.modal-header .modal-title{
+  text-align: center !important;
+  text-transform: capitalize;
 }
 
 .container {
@@ -340,7 +350,7 @@ input {
   width: max-content;
 }
 
-.home__info {
+.home__info{
   background-color: var(--first-color);
   display: flex;
   padding: 1.5rem 1rem;
@@ -350,6 +360,11 @@ input {
   right: 0;
   bottom: 1rem;
   width: 228px;
+}
+
+.modal-title{
+  padding-left: 30%;
+  padding-right: 25%;
 }
 
 .home__info-title {
@@ -388,6 +403,8 @@ input {
 
 .button:hover {
   background-color: var(--first-color-alt);
+  text-decoration: none;
+  color: #FFF;
 }
 
 .button--flex {
@@ -1051,16 +1068,16 @@ input {
   display: flex;
   width: 100%;
   justify-content: center;
-  
 }
 .items span{
   padding: 7px 25px;
-  font-size: 18px;
+  font-size: var(--normal-font-size);
   font-weight: 300;
   cursor: pointer;
-  color: var(--first-color-alt);
+  color: var(--text-color);
   border: 1.5px solid var(--first-color);
   transition: all 0.3s ease;
+  margin: 2%;
 }
 .items span.active,
 .items span:hover{
@@ -1091,3 +1108,51 @@ input {
   animation: animate 0.4s ease;
 }
 
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.gallery .image{
+  width: calc(100% / 4);
+  padding: 7px;
+}
+.gallery .image span{
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+.gallery .image img{
+  width: 100%;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+}
+.gallery .image:hover img{
+  transform: scale(1.1);
+}
+.gallery .image.hide{
+  display: none;
+}
+.gallery .image.show{
+  animation: animate 0.4s ease;
+}
+@keyframes animate {
+  0%{
+    transform: scale(0.5);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+/* Media queries para hacerlo responsivo */
+@media (max-width: 992px) {
+  .gallery .image {
+    width: 50%; /* 2 por fila en pantallas medianas */
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery .image {
+    width: 100%; /* 1 por fila en móviles */
+  }
+}

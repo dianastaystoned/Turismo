@@ -172,3 +172,16 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+// Solución robusta para scroll que se queda bloqueado al cerrar modales
+document.addEventListener('hidden.bs.modal', function () {
+    // Esto forza el scroll del body
+    document.body.style.overflow = 'auto';
+
+    // Elimina clases que Bootstrap a veces deja activas
+    document.body.classList.remove('modal-open');
+
+    // Si aún hay backdrop visible (a veces se queda), lo quitamos manualmente
+    let backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach(el => el.remove());
+  });
